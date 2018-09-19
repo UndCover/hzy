@@ -34,13 +34,13 @@
 			var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
 			var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
 			console.log("browserRedirect")
-			if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM)) {
+			if ((bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM)) {
 				//电脑端
 				//加载css
 				var linkNode = document.createElement("link");
 				linkNode.setAttribute("rel", "stylesheet");
 				linkNode.setAttribute("type", "text/css");
-				linkNode.setAttribute("href", "pc.all.min.css");
+				linkNode.setAttribute("href", "mobile.all.min.css");
 				document.head.appendChild(linkNode);
 				// //加载js
 				// var scriptNode = document.createElement("script");
