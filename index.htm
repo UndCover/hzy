@@ -33,9 +33,8 @@
 			var bIsAndroid = sUserAgent.match(/android/i) == "android";
 			var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
 			var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
-			console.log("browserRedirect")
+
 			if ((bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM)) {
-				//电脑端
 				//加载css
 				var linkNode = document.createElement("link");
 				linkNode.setAttribute("rel", "stylesheet");
@@ -47,18 +46,6 @@
 				// scriptNode.setAttribute("type", "text/javascript");
 				// scriptNode.setAttribute("src", "../../js/index.min.js");
 				// document.head.appendChild(scriptNode);
-			} else {
-				//手机端
-				// var linkNode = document.createElement("link");
-				// linkNode.setAttribute("rel", "stylesheet");
-				// linkNode.setAttribute("type", "text/css");
-				// linkNode.setAttribute("href", "pc.all.min.css");
-				// document.head.appendChild(linkNode);
-				// //css
-				// var scriptNode = document.createElement("script");
-				// scriptNode.setAttribute("type", "text/javascript");
-				// scriptNode.setAttribute("src", "../../js/phone.min.js");
-				// document.head.appendChild(scriptNode);
 			}
 		}
 		browserRedirect();
@@ -67,9 +54,13 @@
 <body>
 	<div class="flowtime">
 		<div class="ft-section section-1" data-id="section-1">
-			<div id="/section-1/page-1" class="ft-page page-1" data-id="page-1"></div>
+			<div id="/section-1/page-1" class="ft-page page-1 center-img" data-id="page-1">
+				<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537357731787&di=0a05b10d0f614ef4c6288d07946730f9&imgtype=0&src=http%3A%2F%2Fwww.playmusic.tw%2FUploadFile%2Fmember%2F29%2Fimages%2FMusic_news%2Fimg1408116300.jpg"/>
+			</div>
 			<div id="/section-1/page-2" class="ft-page page-2" data-id="page-2"></div>
-			<div id="/section-1/page-3" class="ft-page page-3 left-img" data-id="page-3"></div>
+			<div id="/section-1/page-3" class="ft-page page-3 left-img" data-id="page-3">
+				<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537357731787&di=0a05b10d0f614ef4c6288d07946730f9&imgtype=0&src=http%3A%2F%2Fwww.playmusic.tw%2FUploadFile%2Fmember%2F29%2Fimages%2FMusic_news%2Fimg1408116300.jpg"/>
+			</div>
 			<div id="/section-1/page-4" class="ft-page page-4 full-img" data-id="page-4"></div>
 		</div>
 		<div class="ft-section section-2" data-id="section-2">
@@ -138,12 +129,15 @@
 			<div id="/section-9/page-2" class="ft-page page-53" data-id="page-2"></div>
 			<div id="/section-9/page-3" class="ft-page page-54 center-img" data-id="page-3" ></div>
 			<div id="/section-9/page-4" class="ft-page page-55 right-img" data-id="page-4">
-				<button id="btn_overview">click</button>
+				<button id="btn_overview">click me </button>
 			</div>
 		</div>
 	</div>
-	<div>
-		
+	<div id="div_counter" style="text-align: center;position: fixed; bottom:10px;width: 70%">
+		<p style="color: #ed3073;">We fell in love</p>
+		<p style="color: #ed3073;"><span id="span_meet"></span></p>
+		<p style="color: #ed3073;">距离圣诞结还有</p>
+		<p style="color: #ed3073;"><span id = "span_xmas"/></p>
 	</div>
 	<script src="jquery.min.js" tppabs="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 	<script src="brav1toolbox.js" ></script>
@@ -159,24 +153,68 @@
              return '#'+Math.floor(Math.random()*0xffffff).toString(16);
 		}
 
+		var fallInLove = {
+			start:new Date("6/18/2018 00:00:00"),
+			xmas:new Date("12/25/2018 00:00:00"),
+		}
+
+	    function show_date_time(){
+	        window.setTimeout("show_date_time()", 1000);
+	        span_meet.innerHTML = get_date_time(fallInLove.start);
+	        span_xmas.innerHTML = get_date_time(fallInLove.xmas);
+	    }
+
+	    function get_date_time(target) {
+	        today = new Date();
+	        timeold = (today.getTime() - target.getTime());
+	        if(timeold < 0){
+	        	timeold = -1 * timeold;
+	        }
+	        sectimeold = timeold / 1000
+	        secondsold = Math.floor(sectimeold);
+	        msPerDay = 24 * 60 * 60 * 1000
+	        e_daysold = timeold / msPerDay
+	        daysold = Math.floor(e_daysold);
+	        e_hrsold = (e_daysold - daysold) * 24;
+	        hrsold = Math.floor(e_hrsold);
+	        e_minsold = (e_hrsold - hrsold) * 60;
+	        minsold = Math.floor((e_hrsold - hrsold) * 60);
+	        seconds = Math.floor((e_minsold - minsold) * 60);
+	        var dayStr,hourStr,minStr,secStr;
+	        if(daysold > 0 && daysold < 10){
+	            dayStr = '0'+daysold;
+	        }else{
+	            dayStr = daysold;
+	        }
+	        if(hrsold > 0 && hrsold < 10){
+	            hourStr = '0'+hrsold;
+	        }else{
+	            hourStr = hrsold;
+	        }
+	        if(minsold > 0 && minsold < 10){
+	            minStr = '0'+minsold;
+	        }else{
+	            minStr = minsold;
+	        }
+	        if(seconds > 0 && seconds < 10){
+	            secStr = '0'+seconds;
+	        }else{
+	            secStr = seconds;
+	        }
+	        var str = dayStr + "天" + hourStr + "小时" + minStr + "分" + secStr + "秒";
+	        return str;
+	    }
+	    show_date_time();
+
 		$(function(){
-			//js控制高度
-			// $('.ft-overview .section-2').css("margin-top", -100%)
-			// $('.ft-overview .section-3').css("margin-top", -100%)
-			// $('.ft-overview .section-5').css("margin-top", 100%)
-			// $('.ft-overview .section-7').css("margin-top", -100%)
-			// $('.ft-overview .section-8').css("margin-top", -100%)
 			var ftPages = $('.ft-page')
-			// for(var i = 0; i < ftPages.length; i++){
-			// 	$(ftPages[i]).css({
-			// 		"background-color": randomColor(),
-			// 	})
-			// }
 			$.each(ftPages,function(key,val){ 
 			    $(val).css({
 					"background-color": randomColor(),
 				})
 			}); 
+
+			$('#div_counter').toggle();
 
 			$('#btn_overview').click(function(event){
 				event.stopPropagation()
@@ -185,6 +223,13 @@
 		})
 
 		Flowtime.showProgress(true);
+		Flowtime.addEventListener("flowtimenavigation", function(event){
+			if(event.isOverview){
+				$('#div_counter').show();
+			}else{
+				$('#div_counter').hide();
+			}
+		}, false)
 	</script>
 </body>
 </html>
