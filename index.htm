@@ -143,16 +143,14 @@
 			// 	Flowtime.toggleOverview(true);
 			// }
 
-			$('#btn_overview').click(function(){
-			  console.log("click")
-			  // Flowtime.toggleOverview(true,false);
-			  // Flowtime.toggleOverview(false,true);
-			  // Flowtime.toggleOverview(true,true);
-			  Flowtime.toggleOverview(false,false);
+			$('#btn_overview').click(function(event){
+				event.stopPropagation()
+				Flowtime.toggleOverview(true)
 			});
 		})
+
+
 		Flowtime.showProgress(true);
-		Flowtime.showOverview(true,false);
 	</script>
 </body>
 </html>
