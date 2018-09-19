@@ -22,6 +22,47 @@
 	<meta name="description" content="test">
 	<title>HZY</title>
 	<link rel="stylesheet" href="all.min.css" >
+	<script type="text/javascript">
+		function browserRedirect() {
+			var sUserAgent = navigator.userAgent.toLowerCase();
+			var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+			var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+			var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+			var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+			var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+			var bIsAndroid = sUserAgent.match(/android/i) == "android";
+			var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+			var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+			console.log("browserRedirect")
+			if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM)) {
+				//电脑端
+				//加载css
+				var linkNode = document.createElement("link");
+				linkNode.setAttribute("rel", "stylesheet");
+				linkNode.setAttribute("type", "text/css");
+				linkNode.setAttribute("href", "pc.all.min.css");
+				document.head.appendChild(linkNode);
+				// //加载js
+				// var scriptNode = document.createElement("script");
+				// scriptNode.setAttribute("type", "text/javascript");
+				// scriptNode.setAttribute("src", "../../js/index.min.js");
+				// document.head.appendChild(scriptNode);
+			} else {
+				//手机端
+				// var linkNode = document.createElement("link");
+				// linkNode.setAttribute("rel", "stylesheet");
+				// linkNode.setAttribute("type", "text/css");
+				// linkNode.setAttribute("href", "pc.all.min.css");
+				// document.head.appendChild(linkNode);
+				// //css
+				// var scriptNode = document.createElement("script");
+				// scriptNode.setAttribute("type", "text/javascript");
+				// scriptNode.setAttribute("src", "../../js/phone.min.js");
+				// document.head.appendChild(scriptNode);
+			}
+		}
+		browserRedirect();
+	</script>
 </head>
 <body>
 	<div class="flowtime">
@@ -101,6 +142,9 @@
 			</div>
 		</div>
 	</div>
+	<div>
+		
+	</div>
 	<script src="jquery.min.js" tppabs="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 	<script src="brav1toolbox.js" ></script>
 	<script src="flowtime.js" ></script>
@@ -116,10 +160,6 @@
 		}
 
 		$(function(){
-			var sHeight = $(window).height();
-			var sHeight_nav = -1 * sHeight;
-			console.log(sHeight);
-
 			//js控制高度
 			// $('.ft-overview .section-2').css("margin-top", -100%)
 			// $('.ft-overview .section-3').css("margin-top", -100%)
@@ -138,17 +178,11 @@
 				})
 			}); 
 
-			// $('#btn_overview').click(function(event){
-			// 	console.log("click")
-			// 	Flowtime.toggleOverview(true);
-			// }
-
 			$('#btn_overview').click(function(event){
 				event.stopPropagation()
 				Flowtime.toggleOverview(true)
 			});
 		})
-
 
 		Flowtime.showProgress(true);
 	</script>
