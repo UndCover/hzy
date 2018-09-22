@@ -181,22 +181,22 @@
 	        minsold = Math.floor((e_hrsold - hrsold) * 60);
 	        seconds = Math.floor((e_minsold - minsold) * 60);
 	        var dayStr,hourStr,minStr,secStr;
-	        if(daysold > 0 && daysold < 10){
+	        if(daysold >= 0 && daysold < 10){
 	            dayStr = '0'+daysold;
 	        }else{
 	            dayStr = daysold;
 	        }
-	        if(hrsold > 0 && hrsold < 10){
+	        if(hrsold >= 0 && hrsold < 10){
 	            hourStr = '0'+hrsold;
 	        }else{
 	            hourStr = hrsold;
 	        }
-	        if(minsold > 0 && minsold < 10){
+	        if(minsold >= 0 && minsold < 10){
 	            minStr = '0'+minsold;
 	        }else{
 	            minStr = minsold;
 	        }
-	        if(seconds > 0 && seconds < 10){
+	        if(seconds >= 0 && seconds < 10){
 	            secStr = '0'+seconds;
 	        }else{
 	            secStr = seconds;
